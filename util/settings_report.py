@@ -1,0 +1,3 @@
+from rest_framework.pagination import LimitOffsetPagination
+
+DEFAULT_PAGINATION_CLASS = LimitOffsetPagination
