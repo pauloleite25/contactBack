@@ -29,3 +29,12 @@ class PhoneViewSet(viewsets.ModelViewSet):
     def get_phone_type(self, request):
         query = Phone.objects.annotate().values('type').annotate(experiments=Count('type'))
         return Response(query)
+
+    @list_route(methods=['POST'])
+    def destroy_all(self, request):
+        data = request.data
+
+        for row in data:
+            resource = Phone.objects.get(id=row)
+            resource.delete()
+        return Response(status=status.HTTP_200_OK)
